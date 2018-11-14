@@ -13,7 +13,9 @@ stop(){
 case "$1" in  
 start)  
     echo "Starting $JENKINSFILENAME "  
-    exec nohup java -jar /data/jenkins/jenkins.war --httpPort=8080 >> /var/log/jenkins/jenkins.log.out 2>&1 &   
+    #exec nohup java -jar /data/jenkins/jenkins.war --httpPort=8080 >> /var/log/jenkins/jenkins.log.out 2>&1 & sleep 1   
+    exec java -jar /data/jenkins/jenkins.war --httpPort=8080 2>&1 | tee -a /var/log/jenkins/jenkins.log.out  
+    exit 0
     ;;  
 stop)  
     exec stop  
