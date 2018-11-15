@@ -23,4 +23,4 @@ docker-jenkins镜像脚本
 #### 下载和运行
 
     docker pull docker-jenkins:tag
-    docker run -d --name [name] -v -p 9080:8080  [image]:[tag] start
+    docker run -d --name [name] -p 9080:8080 -v ~/.ssh:/root/.ssh -v /etc/ansible/:/etc/ansible/ -v /var/log/jenkins/:/var/log/jenkins/ [image]:[tag] start

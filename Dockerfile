@@ -23,7 +23,7 @@ RUN set -ex; \
     wget -nv -O /data/jenkins/jenkins.war https://mirrors.tuna.tsinghua.edu.cn/jenkins/war-stable/2.138.2/jenkins.war 
 
 #挂载.ssh 目录,方便容器访问gitee和目标机器
-VOLUME ["~/.ssh","/root/.ssh"]
+#VOLUME ["~/.ssh","/root/.ssh"]
 ##########
 # host_key_checking = False 
 # log_path = /var/log/jenkins/ansible.log
@@ -32,11 +32,12 @@ VOLUME ["~/.ssh","/root/.ssh"]
 ########
 
 #挂载ansible的配置目录，方便配置目标机器和ansible的基础配置
-VOLUME ["/etc/ansible/","/etc/ansible/"]
+#VOLUME ["/etc/ansible/","/etc/ansible/"]
 #挂载ansible和jenkins的日志目录
-VOLUME ["/var/log/jenkins/","/var/log/jenkins/"]
+#VOLUME ["/var/log/jenkins/","/var/log/jenkins/"]
 
 
 COPY docker-entrypoint.sh /
+RUN chmod +x docker-entrypoint.sh
 ENTRYPOINT ["/docker-entrypoint.sh"]
 EXPOSE 9080 8080
